@@ -1,7 +1,7 @@
 # Personal Cyber Hygiene Audit
 
 ## Objective
-The objective of this audit is to evaluate my personal cybersecurity practices, identify potential vulnerabilities, and develop an action plan to strengthen my digital security. This assessment will enhance my awareness and proactive approach to cybersecurity threats.
+This audit evaluates my personal cybersecurity practices, identifies areas for improvement, and establishes an action plan to enhance my digital security. The goal is to assess risks related to authentication, device security, social media privacy, email safety, and data backup, then implement practical measures to strengthen my cyber hygiene.
 
 ---
 ## 1. Assessment of Current Practices
