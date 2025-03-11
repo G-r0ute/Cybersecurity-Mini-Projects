@@ -1,66 +1,49 @@
-# ShieldGuard Inc. Research Initiative
+# 🔒 Equifax Data Breach (2017) - Analysis & Log Detection Tool
 
-## Objective
-The purpose of this research initiative is to analyze a major cybersecurity breach, understand its causes, impact, and lessons learned, and provide actionable recommendations for ShieldGuard Inc. to strengthen its security posture. By investigating real-world breaches, ShieldGuard Inc. aims to improve its threat detection, incident response, and preventive security measures.
+## 🎯 Objective
+This project aims to analyze the **Equifax data breach (2017)** and provide a **Python-based log detection tool** to identify exploit attempts. The tool scans logs for suspicious activity related to unpatched vulnerabilities, such as the **Apache Struts CVE-2017-5638** exploited in the breach.
 
-## Research on the Equifax Data Breach (2017)
+## Overview of the Breach
+Equifax, one of the largest credit reporting agencies, suffered a massive data breach in 2017, exposing sensitive data of **147 million** people.  
+- **Company Involved:** Equifax  
+- **Date:** July 2017 (Discovered in September 2017)  
+- **Attack Vector:** Apache Struts vulnerability (CVE-2017-5638)  
+- **Type of Data Exposed:** Social Security numbers, birth dates, addresses  
 
-### 1. Overview of the Breach
-**Organization Involved:** Equifax, one of the largest credit reporting agencies in the U.S.
+## 📉 Impact Analysis
+- **Financial Impact:** $700 million in settlements  
+- **Reputational Damage:** Loss of public trust, CEO resignation  
+- **Operational Consequences:** Security audits, lawsuits  
 
-**Timeline:**  
-- The breach occurred between mid-May and July 2017.  
-- It was publicly disclosed in September 2017.
+## 🔍 Lessons Learned
+- **Vulnerability Exploited:** Unpatched Apache Struts framework  
+- **Preventive Measures:** Timely patch management, threat monitoring  
+- **Post-Breach Actions:** Equifax improved security protocols  
 
-**How the Breach Occurred:**  
-- Attackers exploited a known vulnerability (*Apache Struts CVE-2017-5638*) that Equifax failed to patch.  
-- The vulnerability allowed attackers to gain access to Equifax’s databases.  
-- Sensitive personal information of approximately **147 million individuals** was exposed, including Social Security numbers, birth dates, and addresses.
+---  
 
----
+## 🛠 Log Analysis Tool for Detecting Exploit Attempts
+Below is a Python script that scans logs for **potential exploit attempts** on vulnerable endpoints, simulating how attacks like the Equifax breach can be detected.
 
-### 2. Impact Analysis
+```python
+import re  
 
-#### **Financial Impact**
-- Equifax faced over **$1.4 billion** in legal fees, settlements, and regulatory fines.  
-- The company agreed to a **$700 million** settlement with the U.S. Federal Trade Commission (FTC) and other agencies.
+# Sample log data simulating an Apache Struts vulnerability attack  
+log_data = """  
+[2017-05-14 12:30:45] - User IP: 192.168.1.15 - Access: /vulnerable-endpoint - Exploit Attempt: True  
+[2017-05-15 09:12:34] - User IP: 203.0.113.22 - Access: /admin - Exploit Attempt: False  
+[2017-06-02 18:45:09] - User IP: 198.51.100.45 - Access: /vulnerable-endpoint - Exploit Attempt: True  
+"""  
 
-#### **Reputational Damage**
-- Massive public outrage and loss of customer trust.  
-- Equifax's **CEO, CIO, and CSO resigned** in the aftermath.  
-- Stock prices dropped by **approximately 35%** within weeks of the disclosure.
+# Function to detect suspicious log entries  
+def detect_breach(logs):  
+    pattern = r"\[.*\] - User IP: (\d+\.\d+\.\d+\.\d+) - Access: (.*?) - Exploit Attempt: (True|False)"  
+    matches = re.findall(pattern, logs)  
 
-#### **Operational Consequences**
-- Equifax had to **overhaul its security infrastructure**, leading to increased costs.  
-- The company suffered a **loss of business** from partners and clients due to weakened trust.
+    print("🔍 Detected Exploit Attempts:")  
+    for ip, endpoint, exploit in matches:  
+        if exploit == "True":  
+            print(f"⚠️  Suspicious activity detected! IP: {ip}, Endpoint: {endpoint}")  
 
----
-
-### 3. Lessons Learned
-
-#### **Vulnerabilities Exploited**
-- Failure to patch a **critical software vulnerability** in a timely manner.  
-- Lack of **adequate network segmentation**, allowing attackers to move laterally.  
-- **Poor incident response** and delayed breach detection.
-
-#### **Preventive Measures**
-- Implement an **automated patch management system** to ensure critical vulnerabilities are addressed immediately.  
-- Strengthen **network segmentation** to limit unauthorized lateral movement.  
-- Enhance **intrusion detection systems (IDS) and continuous monitoring**.
-
-#### **Post-Breach Actions**
-- Equifax introduced **enhanced cybersecurity controls** and hired external cybersecurity experts.  
-- The company provided **free credit monitoring** for affected customers.  
-- Strengthened **regulatory compliance and internal security policies**.
-
----
-
-### 4. ShieldGuard’s Takeaway
-
-To prevent similar breaches, ShieldGuard Inc. can adopt the following strategies:
-
-1. **Regular Patch Management:** Ensure timely patching of all critical vulnerabilities through automated security updates.  
-2. **Enhanced Network Security:** Implement strict **network segmentation** and **Zero Trust architecture** to minimize unauthorized access.  
-3. **Continuous Security Monitoring:** Deploy **AI-driven threat detection** and response systems to quickly identify and mitigate potential intrusions.  
-
-By learning from Equifax’s mistakes, ShieldGuard Inc. can proactively strengthen its **cybersecurity framework** and prevent costly breaches in the future.
+# Run the function on sample logs  
+detect_breach(log_data)
